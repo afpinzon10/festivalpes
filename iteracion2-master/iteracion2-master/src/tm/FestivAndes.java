@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import dao.DAOUsuarios;
+import vos.Cliente;
+import vos.ListaClientes;
+import vos.Usuario;
+
 
 
 
@@ -60,14 +65,52 @@ public class FestivAndes {
 		///////Transacciones////////////////////
 		////////////////////////////////////////
 
+		
+		//-----------------------------------------------------
+		// RF1 REGISTRAR USUARIO
+		//----------------------------------------------------
+		
+		public void registrarUsuario(Usuario u ){
+			DAOUsuarios dao = new DAOUsuarios();
+			this.conn = darConexion();
+			dao.setConn(conn);
+			dao.registrarUsuario(u);
+			conn.close();
+		}
+		
+		
+		//-----------------------------------------------------
+		// RF2 REGISTRAR CLIENTE
+		//----------------------------------------------------
+				
+		public void registrarCliente(Usuario u ){
+			DAOUsuarios dao = new DAOUsuarios();
+			this.conn = darConexion();
+			dao.setConn(conn);
+			dao.registrarUsuario(u);
+			conn.close();
+		}
+		
+		//-----------------------------------------------------
+		// RF3 REGISTRAR COMPA��A DE TEATRO
+		//----------------------------------------------------
+				
+		public void registrarCompania(Usuario u ){
+			DAOCompania dao = new D();
+			this.conn = darConexion();
+			dao.setConn(conn);
+			dao.registrarUsuario(u);
+			conn.close();
+		}
 
 		/**
 		 * Método que modela la transacción que retorna todos los videos de la base de datos.
 		 * @return ListaVideos - objeto que modela  un arreglo de videos. este arreglo contiene el resultado de la búsqueda
 		 * @throws Exception -  cualquier error que se genere durante la transacción
 		 */
-		public ListaVideos darVideos() throws Exception {
-			ArrayList<Video> videos;
+		
+		public ListaClientes darClientes() throws Exception {
+			ArrayList<Cliente> videos;
 			DAOTablaVideos daoVideos = new DAOTablaVideos();
 			try 
 			{
