@@ -40,7 +40,7 @@ public class DAOClientes {
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
 		
-		String sql = "SELECT * FROM ISIS2304B261620.CLIENTES";
+		String sql = "SELECT * FROM CLIENTES";
 		System.out.println(sql);
 		
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
