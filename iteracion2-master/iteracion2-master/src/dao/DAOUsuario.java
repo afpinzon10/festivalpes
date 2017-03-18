@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import vos.Usuario;
 
-public class DAOUsuarios {
+public class DAOUsuario {
 
 	private ArrayList<Object> recursos;
 
 	private Connection conn;
 
-	public DAOUsuarios ()
+	public DAOUsuario ()
 	{
 		recursos = new ArrayList<Object>();
 	}
