@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import tm.FestivAndes;
 import tm.VuelAndesMaster;
+import vos.Cliente;
 import vos.Compania;
 
 
@@ -23,7 +24,31 @@ import vos.Compania;
 
 public class CompaniaServices {
 
+	@Context
+	private ServletContext context;
+		
+	private String getPath()
+	{
+		return context.getRealPath("WEB-INF/ConnectionData");
+	}
+		
+		
+	private String doErrorMessage(Exception e)
+	{
+		return "{ \"ERROR\": \""+ e.getMessage() + "\"}" ;
+	}
 	
-	
+	@POST
+	@Path("usuarios/{idUsuario}/companias")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response registrarCliente(Compania c){
+		try {
+			FestivAndes tm = new FestivAndes(getPath());
+			tm.registrarCompania(c);
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+		return Response.status(200).entity(c).build();
+	}
 	
 }
