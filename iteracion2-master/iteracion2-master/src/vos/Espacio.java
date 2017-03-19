@@ -16,7 +16,7 @@ public class Espacio {
 	private String nombre;
 	
 	@JsonProperty(value="capacidad")
-	private String capacidad;
+	private int capacidad;
 	
 	@JsonProperty(value="ubicacion")
 	private String ubicacion;
@@ -37,7 +37,7 @@ public class Espacio {
 	private Date horafin;
 
 	public Espacio(ArrayList<Funcion> funciones, @JsonProperty(value="idespacio") int idespacio, @JsonProperty(value="nombre") String nombre, 
-			@JsonProperty(value="capacidad") String capacidad, @JsonProperty(value="ubicacion") String ubicacion,
+			@JsonProperty(value="capacidad") int capacidad, @JsonProperty(value="ubicacion") String ubicacion,
 			@JsonProperty(value="tipo") String tipo, @JsonProperty(value="ciudad") String ciudad, @JsonProperty(value="telefono") String telefono, 
 			@JsonProperty(value="horainicio") Date horainicio, @JsonProperty(value="horafin") Date horafin) {
 		this.funciones = funciones;
@@ -76,11 +76,11 @@ public class Espacio {
 		this.nombre = nombre;
 	}
 
-	public String getCapacidad() {
+	public int getCapacidad() {
 		return capacidad;
 	}
 
-	public void setCapacidad(String capacidad) {
+	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
 

@@ -12,6 +12,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.jboss.ide.eclipse.as.classpath.core.ejb3.classpathContainer/WildFly  8.x"/>
-	<classpathentry kind="lib" path="C:/Users/Sebas/Documents/GitHub/iteracion2/datafactory-0.8.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

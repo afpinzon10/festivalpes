@@ -56,7 +56,7 @@ public class DAOEspacios {
 			String telefono = rs.getString("TELEFONO");
 			Date horaInicio = Date.parse(rs.getString("HORAINICIO"));
 			Date horaFin = Date.parse(rs.getString("HORAFIN"));
-			usuarios.add(new Espacio());
+			usuarios.add(new Espacio(null, idEspacio, nombre, capacidad, ubicacion, tipo, ciudad, telefono, horaInicio, horaFin));
 		}
 		return usuarios;
 	}

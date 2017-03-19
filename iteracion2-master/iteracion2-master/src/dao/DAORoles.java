@@ -37,7 +37,7 @@ public class DAORoles {
 	
 	
 	public ArrayList<Rol> darRols() throws SQLException, Exception {
-		ArrayList<Rol> Roles = new ArrayList<Rol>();
+		ArrayList<Rol> roles = new ArrayList<Rol>();
 
 		
 		String sql = "SELECT * FROM ROL";
@@ -48,16 +48,11 @@ public class DAORoles {
 		ResultSet rs = prepStmt.executeQuery();
 
 		while (rs.next()) {
+			int idRol = Integer.parseInt(rs.getString("IDROL"));
 			String nombre = rs.getString("NOMBRE");
-			String tipo = rs.getString("TIPO_ID");
-			String id = rs.getString("ID");
-			int remitente = Integer.parseInt(rs.getString("REMITENTE"));
-			int viajero = Integer.parseInt(rs.getString("VIAJERO"));
-			int frecuente = Integer.parseInt(rs.getString("FRECUENTE"));
-			String creador = rs.getString("CREADOR");
-			Rols.add(new Rol(creador, remitente, viajero, tipo, id, frecuente, nombre));
+			roles.add(new Rol());
 		}
-		return Rols;
+		return roles;
 	}
 
 	
