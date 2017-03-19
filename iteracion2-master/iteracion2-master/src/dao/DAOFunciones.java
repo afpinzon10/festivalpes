@@ -56,4 +56,20 @@ private ArrayList<Object> recursos;
 		}
 		return Funciones;
 	}
+
+	public void addFuncion(Funcion funcion) throws SQLException {
+		
+		String sql = "INSERT INTO FUNCION VALUES (FECHA, HORA, IDESPACIO, IDOBRA)";
+		sql += funcion.getFecha() + ",'";
+		sql += funcion.getHora() + ",'";
+		sql += funcion.getIdespacio() + ",'";
+		sql += funcion.getIdobra() +")";
+		
+		System.out.println("SQL stmt    addCliente:" + sql);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+		
+	}
 }

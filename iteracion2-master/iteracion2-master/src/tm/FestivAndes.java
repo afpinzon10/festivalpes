@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import dao.DAOClientes;
 import dao.DAOCompanias;
+import dao.DAOFunciones;
 import dao.DAOTablaVideos;
 import dao.DAOTablaVideos;
 import dao.DAOTablaVideos;
@@ -40,6 +41,7 @@ import vos.
 import vos.Video;Cliente
 import vos.ListaVideos;
 import vos.Compania;
+import vos.Funcion;
 import vos.ListaCl
 import vos.Video;ientes;
 import vos.ListaVideos;
@@ -191,10 +193,34 @@ public class FestivAndes {
 		
 		
 		//-----------------------------------------------------
-		// RF4 REGISTRAR ESPECTÁCULO
+		// RF4 REGISTRAR FUNCION
 		//----------------------------------------------------
 		
-		
+		public void registrarFuncion(Funcion funcion ) {
+			DAOFunciones daofunciones = new DAOFunciones ();
+			try {
+				this.conn = darConexion();
+				daofunciones.setConn(conn);
+				daofunciones.addFuncion(funcion);
+				conn.close();
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.err.println("SQLException:" + e.getMessage());
+					e.printStackTrace();
+					throw e;
+				}finally {
+					try {
+						daofunciones.cerrarRecursos();
+						if(this.conn!=null)
+							this.conn.close();
+					} catch (SQLException exception) {
+						System.err.println("SQLException closing resources:" + exception.getMessage());
+						exception.printStackTrace();
+						throw exception;
+					}
+				}
+		}
 		
 
 		/**
