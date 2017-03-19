@@ -58,9 +58,17 @@ public class DAOUsuario {
 		return usuarios;
 	}
 	
-	public void addUsuario(Usuario user){
+	public void addUsuario(Usuario user) throws SQLException{
 		String sql = "INSERT INTO USUARIO VALUES (LOGIN, PASSWORD, IDROL)";
-		sql += user.;
+		sql += user.getLogin() + ",'";
+		sql += user.getPassword() + ",'";
+		sql += user.getIdrol() + ")";
+		
+		System.out.println("SQL stmt    addUsuario:" + sql);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
 	}
 	
 

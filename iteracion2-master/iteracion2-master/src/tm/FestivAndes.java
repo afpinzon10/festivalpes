@@ -8,12 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import dao.DAOUsuario;
 import dao.DAOUsuarios;
 import vos.Cliente;
 import vos.ListaClientes;
 import vos.Usuario;
-
-
 
 
 public class FestivAndes {
@@ -70,12 +69,30 @@ public class FestivAndes {
 		// RF1 REGISTRAR USUARIO
 		//----------------------------------------------------
 		
-		public void registrarUsuario(Usuario u ){
-			DAOUsuarios dao = new DAOUsuarios();
+		public void registrarUsuario(Usuario user ) throws SQLException{
+			DAOUsuario daoUsuario = new DAOUsuario();
+			try {
 			this.conn = darConexion();
-			dao.setConn(conn);
-			dao.registrarUsuario(u);
+			daoUsuario.setConn(conn);
+			daoUsuario.addUsuario(user);
 			conn.close();
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.err.println("SQLException:" + e.getMessage());
+				e.printStackTrace();
+				throw e;
+			}finally {
+				try {
+					daoUsuario.cerrarRecursos();
+					if(this.conn!=null)
+						this.conn.close();
+				} catch (SQLException exception) {
+					System.err.println("SQLException closing resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
 		}
 		
 		
