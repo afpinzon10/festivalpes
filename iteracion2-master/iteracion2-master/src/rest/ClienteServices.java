@@ -13,6 +13,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import tm.FestivAndes;
 import tm.VuelAndesMaster;
 import vos.Cliente;
 
@@ -79,8 +80,8 @@ public class ClienteServices
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response registrarCliente(Cliente c){
 		try {
-			VuelAndesMaster tm = new VuelAndesMaster(getPath());
-			tm.addCliente(c);
+			FestivAndes tm = new FestivAndes(getPath());
+			tm.registrarCliente(c);
 		} catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}

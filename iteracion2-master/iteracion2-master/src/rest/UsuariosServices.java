@@ -15,6 +15,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import tm.FestivAndes;
 import tm.VuelAndesMaster;
 import vos.Administra;
 import vos.Opera;
@@ -42,7 +43,7 @@ public class UsuariosServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response registrarUsuario(Usuario u){
 		try {
-			VuelAndesMaster tm = new VuelAndesMaster(getPath());
+			FestivAndes tm = new FestivAndes(getPath());
 			tm.registrarUsuario(u);
 		} catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();

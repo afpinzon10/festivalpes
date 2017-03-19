@@ -40,6 +40,7 @@ import vos.ListaVideos;suarios;
 import vos.
 import vos.Video;Cliente
 import vos.ListaVideos;
+import vos.Cliente;
 import vos.Compania;
 import vos.Espacio;
 import vos.Funcion;
@@ -166,7 +167,7 @@ public class FestivAndes {
 		// RF3 REGISTRAR COMPAÑÍA DE TEATRO
 		//----------------------------------------------------
 				
-		public void registrarCliente(Compania comp ) ){
+		public void registrarCompania(Compania comp ) {
 			DAOCompanias daoCompania = new DAOCompanias();
 			try {
 				this.conn = darConexion();
