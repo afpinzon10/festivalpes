@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import dao.DAOUsuario;
+import dao.DAOClientes;
 import dao.DAOUsuarios;
 import vos.Cliente;
 import vos.ListaClientes;
@@ -70,7 +70,7 @@ public class FestivAndes {
 		//----------------------------------------------------
 		
 		public void registrarUsuario(Usuario user ) throws SQLException{
-			DAOUsuario daoUsuario = new DAOUsuario();
+			DAOUsuarios daoUsuario = new DAOUsuarios();
 			try {
 			this.conn = darConexion();
 			daoUsuario.setConn(conn);
@@ -100,13 +100,32 @@ public class FestivAndes {
 		// RF2 REGISTRAR CLIENTE
 		//----------------------------------------------------
 				
-		public void registrarCliente(Usuario u ){
-			DAOUsuarios dao = new DAOUsuarios();
+		public void registrarCliente(Cliente cliente ) throws SQLException{
+			DAOClientes daoCliente = new DAOClientes();
+			try {
 			this.conn = darConexion();
-			dao.setConn(conn);
-			dao.registrarUsuario(u);
+			daoCliente.setConn(conn);
+			daoCliente.addCliente(cliente);
 			conn.close();
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.err.println("SQLException:" + e.getMessage());
+				e.printStackTrace();
+				throw e;
+			}finally {
+				try {
+					daoCliente.cerrarRecursos();
+					if(this.conn!=null)
+						this.conn.close();
+				} catch (SQLException exception) {
+					System.err.println("SQLException closing resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
 		}
+		
 		
 		//-----------------------------------------------------
 		// RF3 REGISTRAR COMPA—ÕA DE TEATRO
@@ -119,6 +138,14 @@ public class FestivAndes {
 			dao.registrarUsuario(u);
 			conn.close();
 		}
+		
+		
+		//-----------------------------------------------------
+		// RF3 REGISTRAR COMPA—ÕA DE TEATRO
+		//----------------------------------------------------
+		
+		
+		
 
 		/**
 		 * M√©todo que modela la transacci√≥n que retorna todos los videos de la base de datos.

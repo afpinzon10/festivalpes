@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vos.Cliente;
+import vos.Usuario;
 
 public class DAOClientes {
 	
@@ -53,5 +54,23 @@ private ArrayList<Object> recursos;
 			Clientes.add(new Cliente(iata, nombre, tipo, ciudad, pais));
 		}
 		return Clientes;
+	}
+
+	public void addCliente(Cliente cliente) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO CLIENTE VALUES (IDUSUARIO, NOMBRE, APELLIDO, EMAIL, IDENTIFICACION)";
+		sql += cliente.getIdusuario() + ",'";
+		sql += cliente.getNombre() + ",'";
+		sql += cliente.getApellido() + ",'";
+		sql += cliente.getEmail() + ",'";
+		sql += cliente.getIdentificacion() + ")";
+		
+		System.out.println("SQL stmt    addCliente:" + sql);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+		
+		
 	}
 }
