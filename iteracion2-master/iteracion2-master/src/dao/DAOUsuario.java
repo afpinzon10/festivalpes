@@ -18,6 +18,7 @@ public class DAOUsuario {
 		recursos = new ArrayList<Object>();
 	}
 
+	//Cierra el recuerso
 	public void cerrarRecursos() 
 	{
 		for(Object ob : recursos){
@@ -56,5 +57,11 @@ public class DAOUsuario {
 		}
 		return usuarios;
 	}
+	
+	public void addUsuario(Usuario user){
+		String sql = "INSERT INTO USUARIO VALUES (LOGIN, PASSWORD, IDROL)";
+		sql += user.;
+	}
+	
 
 }
