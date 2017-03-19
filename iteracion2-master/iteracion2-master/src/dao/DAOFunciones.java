@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
+import vos.Espacio;
 import vos.Funcion;
 
 public class DAOFunciones {
@@ -64,6 +65,26 @@ private ArrayList<Object> recursos;
 		sql += funcion.getHora() + ",'";
 		sql += funcion.getIdespacio() + ",'";
 		sql += funcion.getIdobra() +")";
+		
+		System.out.println("SQL stmt    addCliente:" + sql);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+		
+	}
+
+	public void addEspacio(Espacio espacio) throws SQLException {
+		String sql = "INSERT INTO ESPACIO VALUES (NOMBRE, CAPACIDAD, UBICACION, TIPO, CIUDAD, TELEFONO, HORAINICIO, HORAFIN)";
+		sql += espacio.getNombre() + ",'";
+		sql += espacio.getCapacidad() + ",'";
+		sql += espacio.getUbicacion() + ",'";
+		sql += espacio.getTipo() + ",'";
+		sql += espacio.getCiudad() + ",'";
+		sql += espacio.getTelefono() + ",'";
+		sql += espacio.getHorainicio() + ",'";
+		sql += espacio.getHorainicio() + ",'";
+		sql += espacio.getHorafin() + ")";
 		
 		System.out.println("SQL stmt    addCliente:" + sql);
 		

@@ -41,6 +41,7 @@ import vos.
 import vos.Video;Cliente
 import vos.ListaVideos;
 import vos.Compania;
+import vos.Espacio;
 import vos.Funcion;
 import vos.ListaCl
 import vos.Video;ientes;
@@ -221,6 +222,35 @@ public class FestivAndes {
 					}
 				}
 		}
+		//-----------------------------------------------------
+		// RF5 REGISTRAR ESPACIO
+		//----------------------------------------------------
+		
+		public void registrarEspacio(Espacio espacio ) {
+			DAOFunciones daoEspacio = new DAOFunciones ();
+			try {
+				this.conn = darConexion();
+				daoEspacio.setConn(conn);
+				daoEspacio.addEspacio(espacio);
+				conn.close();
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.err.println("SQLException:" + e.getMessage());
+					e.printStackTrace();
+					throw e;
+				}finally {
+					try {
+						daoEspacio.cerrarRecursos();
+						if(this.conn!=null)
+							this.conn.close();
+					} catch (SQLException exception) {
+						System.err.println("SQLException closing resources:" + exception.getMessage());
+						exception.printStackTrace();
+						throw exception;
+					}
+				}
+		}		
 		
 
 		/**
