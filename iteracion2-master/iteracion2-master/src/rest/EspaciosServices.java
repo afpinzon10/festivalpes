@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import tm.FestivAndes;
-import vos.Compania;
 import vos.Espacio;
 
 public class EspaciosServices {
