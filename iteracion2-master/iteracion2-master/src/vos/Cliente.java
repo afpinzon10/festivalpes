@@ -7,102 +7,48 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class Cliente {
 
 	
-	private ArrayList<Reserva> reservas;
+	private ArrayList<Preferencia> preferencias;
 	
-	@JsonProperty(value="creador")
-	private String creador;
-	
-	@JsonProperty(value="remitente")
-	private boolean remitente;
-	
-	@JsonProperty(value="viajero")
-	private boolean viajero;
-	
-	@JsonProperty(value="tipo")
-	private String tipoId;
-	
-	@JsonProperty(value="id")
-	private String id;
-	
-	@JsonProperty(value="frecuente")
-	private boolean frecuente;
+	@JsonProperty(value="idusuario")
+	private int idusuario;
 	
 	@JsonProperty(value="nombre")
 	private String nombre;
 	
-	public Cliente (@JsonProperty(value="idUsuario") String idUsuario, @JsonProperty(value="remitente")int pRemitente, @JsonProperty(value="viajero")int pViajero, 
-	@JsonProperty(value="tipo") String pTipo, @JsonProperty(value="id") String pId, @JsonProperty(value="frecuente") int pFrecuente,
-			@JsonProperty(value="nombre") String pNombre)
-	{
-		this.reservas = new ArrayList<>();
-		this.remitente = esTrue(pRemitente);
-		this.viajero = esTrue(pViajero);
-		this.tipoId = pTipo;
-		this.id = pId;
-		this.frecuente = esTrue(pFrecuente);
-		this.nombre = pNombre;
-		this.creador = idUsuario;
-	}
+	@JsonProperty(value="apellido")
+	private String apellido;
 	
-	public boolean esTrue(int pParametro)
-	{
-		return (pParametro == 1)? true: false;
+	@JsonProperty(value="email")
+	private String email;
+	
+	@JsonProperty(value="identificacion")
+	private String identificacion;
+
+	public Cliente(ArrayList<Preferencia> preferencias, @JsonProperty(value="idusuario") int idusuario, 
+			@JsonProperty(value="nombre") String nombre, @JsonProperty(value="apellido") String apellido, 
+			@JsonProperty(value="email") String email, @JsonProperty(value="identificacion")String identificacion) {
+		this.preferencias = preferencias;
+		this.idusuario = idusuario;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.identificacion = identificacion;
 	}
 
-	public ArrayList<Reserva> getReservas() {
-		return reservas;
+	public ArrayList<Preferencia> getPreferencias() {
+		return preferencias;
 	}
 
-	public void setReservas(ArrayList<Reserva> reservas) {
-		this.reservas = reservas;
+	public void setPreferencias(ArrayList<Preferencia> preferencias) {
+		this.preferencias = preferencias;
 	}
 
-	public String getCreador() {
-		return creador;
+	public int getIdusuario() {
+		return idusuario;
 	}
 
-	public void setCreador(String idUsuario) {
-		this.creador = idUsuario;
-	}
-
-	public boolean isRemitente() {
-		return remitente;
-	}
-
-	public void setRemitente(boolean remitente) {
-		this.remitente = remitente;
-	}
-
-	public boolean isViajero() {
-		return viajero;
-	}
-
-	public void setViajero(boolean viajero) {
-		this.viajero = viajero;
-	}
-
-	public String getTipoId() {
-		return tipoId;
-	}
-
-	public void setTipoId(String tipoId) {
-		this.tipoId = tipoId;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public boolean isFrecuente() {
-		return frecuente;
-	}
-
-	public void setFrecuente(boolean frecuente) {
-		this.frecuente = frecuente;
+	public void setIdusuario(int idusuario) {
+		this.idusuario = idusuario;
 	}
 
 	public String getNombre() {
@@ -112,7 +58,30 @@ public class Cliente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
 	
 
-	
 }
