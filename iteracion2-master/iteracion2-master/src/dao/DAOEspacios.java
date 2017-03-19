@@ -60,4 +60,25 @@ public class DAOEspacios {
 		}
 		return usuarios;
 	}
+	
+	
+	public void addEspacio(Espacio espacio) throws SQLException {
+		String sql = "INSERT INTO ESPACIO VALUES (NOMBRE, CAPACIDAD, UBICACION, TIPO, CIUDAD, TELEFONO, HORAINICIO, HORAFIN)";
+		sql += espacio.getNombre() + ",'";
+		sql += espacio.getCapacidad() + ",'";
+		sql += espacio.getUbicacion() + ",'";
+		sql += espacio.getTipo() + ",'";
+		sql += espacio.getCiudad() + ",'";
+		sql += espacio.getTelefono() + ",'";
+		sql += espacio.getHorainicio() + ",'";
+		sql += espacio.getHorainicio() + ",'";
+		sql += espacio.getHorafin() + ")";
+		
+		System.out.println("SQL stmt    addCliente:" + sql);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+		
+	
 }

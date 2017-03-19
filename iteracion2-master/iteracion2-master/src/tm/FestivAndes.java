@@ -10,43 +10,17 @@ import java.util.Properties;
 
 import dao.DAOClientes;
 import dao.DAOCompanias;
+import dao.DAOEspacios;
 import dao.DAOFunciones;
 import dao.DAOTablaVideos;
-import dao.DAOTablaVideos;
-import dao.DAOTablaVideos;
-import dao.DAOT
-import vos.ListaVideos;ablaVideos;
-import d
-import vos.Video;ao.DAOT
-import vos.ListaVideos;ablaVideos;
-import d
-import vos.Video;ao.DAOT
-import vos.ListaVideos;ablaVideos;
-import d
-import vos.Video;ao.DAOT
-import vos.ListaVideos;ablaVideos;
-import d
-import vos.Video;ao.DAOT
-import vos.ListaVideos;ablaVideos;
-import d
-import vos.Video;ao.DAOT
-import vos.ListaVideos;ablaVideos;
-import d
-import vos.Video;ao.DAOT
-import vos.ListaVideos;ablaVideos;
-import d
-import vos.Video;ao.DAOU
-import vos.ListaVideos;suarios;
-import vos.
-import vos.Video;Cliente
+import dao.DAOUsuarios;
+
+
 import vos.ListaVideos;
 import vos.Cliente;
 import vos.Compania;
 import vos.Espacio;
 import vos.Funcion;
-import vos.ListaCl
-import vos.Video;ientes;
-import vos.ListaVideos;
 import vos.Usuario;
 import vos.Video;
 
@@ -167,7 +141,7 @@ public class FestivAndes {
 		// RF3 REGISTRAR COMPA淹A DE TEATRO
 		//----------------------------------------------------
 				
-		public void registrarCompania(Compania comp ) {
+		public void registrarCompania(Compania comp ) throws SQLException {
 			DAOCompanias daoCompania = new DAOCompanias();
 			try {
 				this.conn = darConexion();
@@ -198,7 +172,7 @@ public class FestivAndes {
 		// RF4 REGISTRAR FUNCION
 		//----------------------------------------------------
 		
-		public void registrarFuncion(Funcion funcion ) {
+		public void registrarFuncion(Funcion funcion ) throws SQLException {
 			DAOFunciones daofunciones = new DAOFunciones ();
 			try {
 				this.conn = darConexion();
@@ -227,8 +201,8 @@ public class FestivAndes {
 		// RF5 REGISTRAR ESPACIO
 		//----------------------------------------------------
 		
-		public void registrarEspacio(Espacio espacio ) {
-			DAOFunciones daoEspacio = new DAOFunciones ();
+		public void registrarEspacio(Espacio espacio ) throws SQLException {
+			DAOEspacios daoEspacio = new DAOEspacios();
 			try {
 				this.conn = darConexion();
 				daoEspacio.setConn(conn);
@@ -254,43 +228,6 @@ public class FestivAndes {
 		}		
 		
 
-		/**
-		 * M茅todo que modela la transacci贸n que retorna todos los videos de la base de datos.
-		 * @return ListaVideos - objeto que modela  un arreglo de videos. este arreglo contiene el resultado de la b煤squeda
-		 * @throws Exception -  cualquier error que se genere durante la transacci贸n
-		 */
-		
-		public ListaClientes darClientes() throws Exception {
-			ArrayList<Cliente> videos;
-			DAOTablaVideos daoVideos = new DAOTablaVideos();
-			try 
-			{
-				//////Transacci贸n
-				this.conn = darConexion();
-				daoVideos.setConn(conn);
-				videos = daoVideos.darVideos();
-
-			} catch (SQLException e) {
-				System.err.println("SQLException:" + e.getMessage());
-				e.printStackTrace();
-				throw e;
-			} catch (Exception e) {
-				System.err.println("GeneralException:" + e.getMessage());
-				e.printStackTrace();
-				throw e;
-			} finally {
-				try {
-					daoVideos.cerrarRecursos();
-					if(this.conn!=null)
-						this.conn.close();
-				} catch (SQLException exception) {
-					System.err.println("SQLException closing resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}
-			return new ListaVideos(videos);
-		}
 
 		/**
 		 * M茅todo que modela la transacci贸n que busca el/los videos en la base de datos con el nombre entra como par谩metro.

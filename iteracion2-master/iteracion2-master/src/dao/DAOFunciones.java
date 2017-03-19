@@ -10,6 +10,7 @@ import java.util.Date;
 
 import vos.Espacio;
 import vos.Funcion;
+import vos.Viaje;
 
 public class DAOFunciones {
 	
@@ -73,24 +74,37 @@ private ArrayList<Object> recursos;
 		prepStmt.executeQuery();
 		
 	}
-
-	public void addEspacio(Espacio espacio) throws SQLException {
-		String sql = "INSERT INTO ESPACIO VALUES (NOMBRE, CAPACIDAD, UBICACION, TIPO, CIUDAD, TELEFONO, HORAINICIO, HORAFIN)";
-		sql += espacio.getNombre() + ",'";
-		sql += espacio.getCapacidad() + ",'";
-		sql += espacio.getUbicacion() + ",'";
-		sql += espacio.getTipo() + ",'";
-		sql += espacio.getCiudad() + ",'";
-		sql += espacio.getTelefono() + ",'";
-		sql += espacio.getHorainicio() + ",'";
-		sql += espacio.getHorainicio() + ",'";
-		sql += espacio.getHorafin() + ")";
+	
+	public ArrayList<Funcion> darFunciones(String fechaInicio, String fechaFin, String companiaTeatro, String categoriaEspectaculo, String idioma, boolean traduccion) throws SQLException, Exception {
+		ArrayList<Funcion> Funciones = new ArrayList<Funcion>();
+		String sql = "SELECT * FROM FUNCION WHERE";
 		
-		System.out.println("SQL stmt    addCliente:" + sql);
+		
+		int cont = 0;
+		if (fechaInicio != null && fechaFin != null) {
+			sql += "FECHA BETWEEN TO_DATE('" + fechaInicio + ",'dd/mm/yyyy) AND TO_DATE('" + fechaFin + ",'dd/mm/yyyy)";
+			cont++;
+		}
+		if (companiaTeatro != null) {
+			if(cont>0){ sql += " AND ";}
+		}
+		System.out.println(sql);
 		
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
-		prepStmt.executeQuery();
-		
+		ResultSet rs = prepStmt.executeQuery();
+
+		while (rs.next()) {
+			int idFuncion = Integer.parseInt(rs.getString("IDFUNCION"));
+			
+			Date fecha = Date.parse(rs.getString("FECHA"));
+			Time hora = Time.parse(rs.getString("HORA"));
+			int idEspacio = Integer.parseInt(rs.getString("IDESPACIO"));
+			int idObra = Integer.parseInt(rs.getString("IDOBRA"));
+			Funciones.add(new Funcion(null, idFuncion, fecha, hora, idEspacio, idObra));
+		}
+		return Funciones;
 	}
+	
+
 }
