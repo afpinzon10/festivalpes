@@ -46,14 +46,10 @@ public class DAOUsuarios {
 		while (rs.next())
 		{
 			int idUsuario = Integer.parseInt(rs.getString("IDUSUARIO"));
-			String nombre = rs.getString("NOMBRE");
-			String apellido = rs.getString("APELLIDO");
-			String email = rs.getString("EMAIL");
-			String identificacion = rs.getString("IDENTIFICACION");
 			String login = rs.getString("LOGIN");
 			String password = rs.getString("PASSWORD");
 			int idRol = Integer.parseInt(rs.getString("IDROL"));
-			usuarios.add(new Usuario(idUsuario, nombre, apellido, email, identificacion, login, password, idRol));
+			usuarios.add(new Usuario(idUsuario, login, password, idRol));
 		}
 		return usuarios;
 	}

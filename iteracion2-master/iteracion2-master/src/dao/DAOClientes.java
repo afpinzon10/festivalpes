@@ -38,7 +38,7 @@ private ArrayList<Object> recursos;
 	
 	public ArrayList<Cliente> darClientes() throws SQLException, Exception {
 		ArrayList<Cliente> Clientes = new ArrayList<Cliente>();
-		String sql = "SELECT * FROM CLIENTES";
+		String sql = "SELECT * FROM CLIENTE";
 		System.out.println(sql);
 		
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -46,12 +46,12 @@ private ArrayList<Object> recursos;
 		ResultSet rs = prepStmt.executeQuery();
 
 		while (rs.next()) {
-			String idUsuario = rs.getString("IDUSUARUIO");
+			int idUsuario = Integer.parseInt(rs.getString("IDUSUARUIO"));
 			String nombre = rs.getString("NOMBRE");
 			String apellido = rs.getString("APELLIDO");
 			String email = rs.getString("EMAIL");
 			String identificacion = rs.getString("IDENTIFICACION");
-			Clientes.add(new Cliente(iata, nombre, tipo, ciudad, pais));
+			Clientes.add(new Cliente(null, idUsuario, nombre, apellido, email, identificacion));
 		}
 		return Clientes;
 	}
