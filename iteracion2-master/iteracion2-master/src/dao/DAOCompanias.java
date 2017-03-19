@@ -52,4 +52,20 @@ private ArrayList<Object> recursos;
 		}
 		return Companias;
 	}
+
+	public void addCompania(Compania comp) throws SQLException {
+		String sql = "INSERT INTO COMPANIA VALUES (IDUSUARIO, NOMBRE, EMAIL)";
+		sql += comp.getIdusuario() + ",'";
+		sql += comp.getNombre() + ",'";
+		sql += comp.getEmail() +")";
+		
+		System.out.println("SQL stmt    addCompania:" + sql);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();// TODO Auto-generated method stub
+		
+		
+		
+	}
 }

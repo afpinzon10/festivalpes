@@ -9,10 +9,42 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import dao.DAOClientes;
-import dao.DAOUsuarios;
-import vos.Cliente;
-import vos.ListaClientes;
+import dao.DAOCompanias;
+import dao.DAOTablaVideos;
+import dao.DAOTablaVideos;
+import dao.DAOTablaVideos;
+import dao.DAOT
+import vos.ListaVideos;ablaVideos;
+import d
+import vos.Video;ao.DAOT
+import vos.ListaVideos;ablaVideos;
+import d
+import vos.Video;ao.DAOT
+import vos.ListaVideos;ablaVideos;
+import d
+import vos.Video;ao.DAOT
+import vos.ListaVideos;ablaVideos;
+import d
+import vos.Video;ao.DAOT
+import vos.ListaVideos;ablaVideos;
+import d
+import vos.Video;ao.DAOT
+import vos.ListaVideos;ablaVideos;
+import d
+import vos.Video;ao.DAOT
+import vos.ListaVideos;ablaVideos;
+import d
+import vos.Video;ao.DAOU
+import vos.ListaVideos;suarios;
+import vos.
+import vos.Video;Cliente
+import vos.ListaVideos;
+import vos.Compania;
+import vos.ListaCl
+import vos.Video;ientes;
+import vos.ListaVideos;
 import vos.Usuario;
+import vos.Video;
 
 
 public class FestivAndes {
@@ -131,17 +163,35 @@ public class FestivAndes {
 		// RF3 REGISTRAR COMPAÑÍA DE TEATRO
 		//----------------------------------------------------
 				
-		public void registrarCompania(Usuario u ){
-			DAOCompania dao = new D();
-			this.conn = darConexion();
-			dao.setConn(conn);
-			dao.registrarUsuario(u);
-			conn.close();
+		public void registrarCliente(Compania comp ) ){
+			DAOCompanias daoCompania = new DAOCompanias();
+			try {
+				this.conn = darConexion();
+				daoCompania.setConn(conn);
+				daoCompania.addCompania(comp);
+				conn.close();
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.err.println("SQLException:" + e.getMessage());
+					e.printStackTrace();
+					throw e;
+				}finally {
+					try {
+						daoCompania.cerrarRecursos();
+						if(this.conn!=null)
+							this.conn.close();
+					} catch (SQLException exception) {
+						System.err.println("SQLException closing resources:" + exception.getMessage());
+						exception.printStackTrace();
+						throw exception;
+					}
+				}
 		}
 		
 		
 		//-----------------------------------------------------
-		// RF3 REGISTRAR COMPAÑÍA DE TEATRO
+		// RF4 REGISTRAR ESPECTÁCULO
 		//----------------------------------------------------
 		
 		
